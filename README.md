@@ -1,62 +1,36 @@
-# laravel-api-boilerplate
+`
+Rotas da api:
 
-This is a boilerplate for writing RESTful API projects using Laravel, a "Starter Kit" you can use to build your API in seconds.
+````+--------+----------+----------------------+----------+--------------------------------------------------------------------------+------------------+
+| Domain | Method   | URI                  | Name     | Action                                                                   | Middleware       |
++--------+----------+----------------------+----------+--------------------------------------------------------------------------+------------------+
+|        | GET|HEAD | /                    |          | Closure                                                                  | web              |
+|        | GET|HEAD | api                  |          | Closure                                                                  | api              |
+|        | POST     | api/auth/login       | login    | App\Http\Controllers\Auth\AuthController@login                           | api              |
+|        | POST     | api/auth/recovery    |          | App\Http\Controllers\Auth\ForgotPasswordController@sendPasswordResetLink | api              |
+|        | POST     | api/auth/register    | register | App\Http\Controllers\Auth\RegisterController@register                    | api              |
+|        | POST     | api/auth/reset       |          | App\Http\Controllers\Auth\ResetPasswordController@callResetPassword      | api              |
+|        | POST     | api/client           | clients  | App\Http\Controllers\Api\ClientController@store                          | api,jwt,jwt.auth |
+|        | GET|HEAD | api/client           | clients  | App\Http\Controllers\Api\ClientController@index                          | api,jwt,jwt.auth |
+|        | PUT      | api/client/{id}      | clients  | App\Http\Controllers\Api\ClientController@update                         | api,jwt,jwt.auth |
+|        | GET|HEAD | api/client/{id}      | clients  | App\Http\Controllers\Api\ClientController@show                           | api,jwt,jwt.auth |
+|        | POST     | api/event            | events   | App\Http\Controllers\Api\EventController@store                           | api,jwt,jwt.auth |
+|        | GET|HEAD | api/event            | events   | App\Http\Controllers\Api\EventController@index                           | api,jwt,jwt.auth |
+|        | DELETE   | api/event/{id}       | events   | App\Http\Controllers\Api\EventController@destroy                         | api,jwt,jwt.auth |
+|        | GET|HEAD | api/event/{id}       | events   | App\Http\Controllers\Api\EventController@show                            | api,jwt,jwt.auth |
+|        | PUT      | api/event/{id}       | events   | App\Http\Controllers\Api\EventController@update                          | api,jwt,jwt.auth |
+|        | POST     | api/host             | hosts    | App\Http\Controllers\Api\HostController@store                            | api,jwt,jwt.auth |
+|        | GET|HEAD | api/host             | hosts    | App\Http\Controllers\Api\HostController@index                            | api,jwt,jwt.auth |
+|        | GET|HEAD | api/host/{id}        | hosts    | App\Http\Controllers\Api\HostController@show                             | api,jwt,jwt.auth |
+|        | PUT      | api/host/{id}        | hosts    | App\Http\Controllers\Api\HostController@update                           | api,jwt,jwt.auth |
+|        | POST     | api/logout           | logout   | App\Http\Controllers\Auth\LogoutController@logout                        | api,jwt,jwt.auth |
+|        | PUT      | api/profile          | profile  | App\Http\Controllers\Profile\ProfileController@update                    | api,jwt,jwt.auth |
+|        | GET|HEAD | api/profile          | profile  | App\Http\Controllers\Profile\ProfileController@me                        | api,jwt,jwt.auth |
+|        | PUT      | api/profile/password | profile  | App\Http\Controllers\Profile\ProfileController@updatePassword            | api,jwt,jwt.auth |
+|        | GET|HEAD | api/ticket           | tickets  | App\Http\Controllers\Api\TicketController@index                          | api,jwt,jwt.auth |
+|        | POST     | api/ticket           | tickets  | App\Http\Controllers\Api\TicketController@store                          | api,jwt,jwt.auth |
+|        | GET|HEAD | api/ticket/{id}      | tickets  | App\Http\Controllers\Api\TicketController@show                           | api,jwt,jwt.auth |
+|        | PUT      | api/ticket/{id}      | tickets  | App\Http\Controllers\Api\TicketController@update                         | api,jwt,jwt.auth |
++--------+----------+----------------------+----------+--------------------------------------------------------------------------+------------------+
 
-##### Packages:
-
-* JWT-Auth - [tymondesigns/jwt-auth](https://github.com/tymondesigns/jwt-auth)
-* Laravel-CORS [barryvdh/laravel-cors](http://github.com/barryvdh/laravel-cors)
-
-##### Require:
-* PHP: ^7.2
-
-## Features
-
-* JWT Authentication
-* Basic Features: Registration, Login, Update Profile & Password
-* JSON API Format response.
-* Unit/Feature Testing (Soon).
-* Frontend Vue.js starter kit ready example (Soon).
-
-
-
-## Installation
-
-#### Clone the Repo:
-```
-$ git clone https://github.com/kennethtomagan/laravel-api-boilerplate.git
-```
-#### Install Dependencies
-
-```
-$ cd laravel-api-boilerplate.git
-$ composer install
-```
-
-#### Configure the Environment
-Create `.env` file:
-```
-$ cat .env.example > .env
-```
-Run `php artisan key:generate` and `php artisan jwt:secret`
-
-#### Migrate and Seed the Database
-```
-$ php artisan migrate:fresh --seed
-```
-
-
-## Route API Endpoint
-* Postman API Documentation Starter Kit https://documenter.getpostman.com/view/880526/SVtN3BkG?version=latest
-
-| Verb     |                     URI                          |       Controller          |      Notes                                |
-| -------- | -----------------------------------------------  | -----------------------   | ------------------------------------------
-| POST     | `http://localhost:8000/api/auth`              |  AuthController           | to do the login and get your access token
-| POST     | `http://localhost:8000/api/register`          |  RegisterController       | to create a new user into your application
-| POST     | `http://localhost:8000/api/recovery`          |  ForgotPasswordController | to recover your credentials;
-| POST     | `http://localhost:8000/api/reset`             |  ResetPasswordController  | to reset your password after the recovery (setup your mail credentials in `.env` file to avoid error);
-| POST     | `http://localhost:8000/api/logout`            |  LogoutController         | to log out the user by invalidating the passed token;
-| GET      | `http://localhost:8000/api/profile`           |  ProfileController        | to get current user data
-| PUT      | `http://localhost:8000/api/profile`           |  ProfileController        | to update current user data
-| PUT      | `http://localhost:8000/api/profile/password`  |  ProfileController        | to update current user password
-
+`````
